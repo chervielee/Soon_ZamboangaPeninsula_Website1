@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip - Zamboanga Peninsula Tourism</title>
+    <link rel="icon" type="image/png" href="Icons\icon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-primary: #701255;
+            --brand-dark: #52093c;
+            --brand-accent: #f4aae1;
+            --brand-light-bg: #fdf5fa;
+            --text-body: #635760;
+            --bg-page: #f8f6f8;
+            --card-radius: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-body); background-color: var(--bg-page); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navigation Bar */
+        header { position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--brand-accent); }
+        .nav-links { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
+        .nav-links a { color: rgba(255,255,255,0.9); font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: #ffffff; font-weight: 600; }
+
+        /* hero */
+        .page-banner {
+            position: relative;
+            min-height: 520px;
+            background: linear-gradient(135deg, rgba(50, 10, 40, 0.8) 0%, rgba(20, 5, 18, 0.65) 100%), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #ffffff; padding: 6rem 1.5rem 4rem 1.5rem;
+        }
+        .banner-content h1 { font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        .banner-content p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; opacity: 0.9; }
+
+        /* filter bar */
+        .search-widget {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            color: #222;
+        }
+        .search-form { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: center; }
+        .search-field { text-align: left; }
+        .search-field label { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--brand-primary); margin-bottom: 0.25rem; }
+        .search-field select, .search-field input {
+            width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 0.88rem; outline: none; background: #fff;
+        }
+        .btn-search {
+            background: var(--brand-primary); color: #fff; border: none; padding: 0.75rem 1.8rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: var(--transition); height: 100%; align-self: flex-end;
+        }
+        .btn-search:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+        /* main layout */
+        .container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; }
+        .section-box { background: #ffffff; border-radius: var(--card-radius); padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-bottom: 3rem; }
+        .section-title { color: var(--brand-primary); font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; border-left: 5px solid var(--brand-primary); padding-left: 1rem; }
+        .section-subtitle { color: var(--text-body); font-size: 0.95rem; margin-bottom: 2rem; padding-left: 1.25rem; }
+
+        /* block cards */
+        .day-block {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+        .day-block:hover { border-color: #f4aae1; box-shadow: 0 8px 25px rgba(112, 18, 85, 0.08); }
+        .day-header {
+            background: var(--brand-primary);
+            color: #ffffff;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .day-header h3 { font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .day-header span { background: rgba(255,255,255,0.2); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+
+        .timeline-events { padding: 1.5rem; }
+        .event-card {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+        .event-card:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .event-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 0.5rem; }
+        .event-badge {
+            background: var(--brand-light-bg);
+            color: var(--brand-primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+        .event-title { font-weight: 700; color: #222; font-size: 1.05rem; }
+        .event-desc { font-size: 0.88rem; color: var(--text-body); margin-bottom: 0.8rem; }
+
+        /* itinerary  */
+        .gallery-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+        .gallery-row img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; transition: var(--transition); }
+        .gallery-row img:hover { transform: scale(1.03); }
+
+        /* guide and checklist */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .guide-box { background: var(--brand-light-bg); border-radius: 16px; padding: 1.8rem; }
+        .guide-box h3 { color: var(--brand-primary); margin-bottom: 1.2rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .guide-list { list-style: none; }
+        .guide-list li { margin-bottom: 0.9rem; display: flex; align-items: flex-start; gap: 12px; font-size: 0.92rem; }
+        .guide-list li i { color: var(--brand-primary); margin-top: 3px; }
+
+        /* Booking Card */
+        .form-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fdf5fa 100%);
+            border: 1px solid #f4aae1;
+            border-radius: var(--card-radius);
+            padding: 2.5rem;
+            box-shadow: 0 12px 35px rgba(112, 18, 85, 0.08);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.88rem; color: #222; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 0.8rem 1rem; border: 1px solid #ddd; border-radius: 12px; font-size: 0.9rem; outline: none; background: #fff; transition: var(--transition);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(112, 18, 85, 0.12); }
+
+        .btn-submit {
+            width: 100%; background: var(--brand-primary); color: #ffffff; border: none; padding: 1rem; border-radius: 25px;
+            font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); margin-top: 0.5rem;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-submit:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(112, 18, 85, 0.25); }
+
+        /* footer */
+        footer { background: #ffffff; color: var(--text-body); padding: 4rem 2rem 2rem 2rem; border-top: 1px solid #eaeaea; }
+        .footer-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #eee; }
+        .footer-brand .logo { color: var(--brand-primary); margin-bottom: 1rem; }
+        .social-links { display: flex; gap: 0.8rem; }
+        .social-icon { width: 36px; height: 36px; border-radius: 50%; background: #fbebf6; color: var(--brand-primary); display: flex; align-items: center; justify-content: center; }
+        .footer-links h4, .footer-contact h4 { font-size: 1.1rem; font-weight: 700; color: var(--brand-primary); margin-bottom: 1.2rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: var(--text-body); font-size: 0.9rem; }
+        .newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .newsletter-form input { padding: 0.6rem 1rem; border: 1px solid #ddd; border-radius: 20px; flex: 1; font-size: 0.85rem; }
+        .newsletter-form button { background: var(--brand-primary); color: #ffffff; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+        .footer-bottom { max-width: 1280px; margin: 2rem auto 0 auto; text-align: center; color: #999; font-size: 0.85rem; }
+
+        @media (max-width: 900px) {
+            .search-form { grid-template-columns: 1fr 1fr; }
+            .gallery-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) { 
+            .form-row, .grid-2, .search-form { grid-template-columns: 1fr; } 
+            .nav-links { display: none; } 
+            .footer-container { grid-template-columns: 1fr; } 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fa-solid fa-compass"></i> ZAMBOANGA <span>PENINSULA</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="history.html">History & Culture</a></li>
+                <li><a href="plan-trip.html" class="active">Plan Your Trip</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- search banner -->
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Plan Your Trip</h1>
+            <p>Explore customized itineraries, essential travel guides, and book your dream adventure.</p>
+        </div>
+
+        <!-- filter bar -->
+        <div class="search-widget">
+            <form class="search-form" onsubmit="event.preventDefault();">
+                <div class="search-field">
+                    <label><i class="fa-solid fa-location-dot"></i> Destination</label>
+                    <select>
+                        <option>Zamboanga City</option>
+                        <option>Dapitan City</option>
+                        <option>Dipolog City</option>
+                        <option>Pagadian City</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <label><i class="fa-solid fa-calendar-days"></i> Travel Date</label>
+                    <input type="date" required>
+                </div>
+                <div class="search-field">
+                    <label><i class="fa-solid fa-layer-group"></i> Experience Type</label>
+                    <select>
+                        <option>Island Hopping & Beach</option>
+                        <option>Heritage & History</option>
+                        <option>Culinary Food Tour</option>
+                        <option>Full Peninsula Combo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </form>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- itinerary 2 -->
+        <section class="section-box">
+            <h2 class="section-title">Featured 3-Day Peninsula Itinerary</h2>
+            <p class="section-subtitle">Experience the ultimate blend of heritage, pink sand beaches, and authentic gastronomy.</p>
+
+            <!-- d1 -->
+            <div class="day-block">
+                <div class="day-header">
+                    <h3><i class="fa-solid fa-calendar-day"></i> Day 1: Historic Arrival & Coastal Sunset</h3>
+                    <span>Zamboanga City</span>
+                </div>
+                <div class="timeline-events">
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Morning</span>
+                            <span class="event-title">Arrival & Cultural Warm-up</span>
+                        </div>
+                        <p class="event-desc">Land at Zamboanga International Airport. Check into your hotel and enjoy a warm local breakfast with hot Chavacano coffee.</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Afternoon</span>
+                            <span class="event-title">Fort Pilar Shrine & Museum Tour</span>
+                        </div>
+                        <p class="event-desc">Explore 17th-century Spanish stone ramparts, historic Marian shrines, and the National Museum branch exhibiting regional artifacts.</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Evening</span>
+                            <span class="event-title">Paseo del Mar Seafood Dinner</span>
+                        </div>
+                        <p class="event-desc">Stroll along the waterfront promenade and sample fresh seafood dishes as the sun sets over Basilan Strait.</p>
+                    </div>
+
+                    <!-- photo row d1-->
+                    <div class="gallery-row">
+                        <img src="Images\zamboangacoast.jpg" alt="Zamboanga Coast" loading="lazy">
+                        <img src="Images\fortp.jpg" alt="Fort Pilar Ramparts" loading="lazy">
+                        <img src="Images\sunsetzcity.jpg" alt="Paseo Sunset" loading="lazy">
+                        <img src="Images\zfood.jpg" alt="Seafood Dinner" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- d2 -->
+            <div class="day-block">
+                <div class="day-header">
+                    <h3><i class="fa-solid fa-umbrella-beach"></i> Day 2: Pink Sand Island & Culinary Feast</h3>
+                    <span>Great Santa Cruz Island</span>
+                </div>
+                <div class="timeline-events">
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Morning</span>
+                            <span class="event-title">Vinta Boat Ride to Santa Cruz Island</span>
+                        </div>
+                        <p class="event-desc">Board a colorful traditional Vinta sailboat across clear turquoise waters to Great Santa Cruz Island, famous for its crushed red organ-pipe coral pink sand.</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Afternoon</span>
+                            <span class="event-title">Lagoon Snorkeling & Beach Relaxation</span>
+                        </div>
+                        <p class="event-desc">Swim, snorkel among stingless jellyfish in the protected lagoon, and relax under coconut palms on the pink shore.</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Evening</span>
+                            <span class="event-title">Authentic Curacha Feast</span>
+                        </div>
+                        <p class="event-desc">Dine at Alavar Seafood Restaurant for world-famous Curacha (spanner crab) generously covered in signature coconut cream Alavar sauce.</p>
+                    </div>
+
+                    <!-- photo d2 -->
+                    <div class="gallery-row">
+                        <img src="Images\pinksandsc.jpg" alt="Pink Sand Shore" loading="lazy">
+                        <img src="Images\beachsc.jpg" alt="Snorkeling Lagoon" loading="lazy">
+                        <img src="Images\curacha.jpeg" alt="Curacha Dish" loading="lazy">
+                        <img src="Images\vinta.JPG" alt="Island Vinta Boat" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- d3 -->
+            <div class="day-block">
+                <div class="day-header">
+                    <h3><i class="fa-solid fa-monument"></i> Day 3: Dapitan Heritage & Sunset Relaxation</h3>
+                    <span>Dapitan & Dipolog City</span>
+                </div>
+                <div class="timeline-events">
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Morning</span>
+                            <span class="event-title">Rizal Shrine Heritage Trail</span>
+                        </div>
+                        <p class="event-desc">Travel north to Dapitan City to visit Dr. Jose Rizal’s exile estate, outdoor amphitheater, and historical museum grounds.</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Afternoon</span>
+                            <span class="event-title">Yakan Weaving Village & Souvenir Shopping</span>
+                        </div>
+                        <p class="event-desc">Watch indigenous Yakan weavers craft intricate geometric textiles by hand and shop for handwoven bags and cloths.</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-badge">Evening</span>
+                            <span class="event-title">Dakak Beach Sunset View</span>
+                        </div>
+                        <p class="event-desc">Conclude your journey with a relaxing evening watching the sunset over Dakak Beach before airport departure.</p>
+                    </div>
+
+                    <!-- photo row d3 -->
+                    <div class="gallery-row">
+                        <img src="Images\rizal-shrine.jpg" alt="Rizal Shrine Grounds" loading="lazy">
+                        <img src="Images\handicrafts.jpg" alt="Handicrafts" loading="lazy">
+                        <img src="Images\dakak.jpg" alt="Dakak Sunset" loading="lazy">
+                        <img src="Images\coastaldipolog.jpg" alt="Coastal View" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- guide checklist -->
+        <section class="section-box">
+            <h2 class="section-title">Essential Travel Guide</h2>
+            <p class="section-subtitle">Key tips and packing recommendations for a seamless trip across Region IX.</p>
+            
+            <div class="grid-2">
+                <div class="guide-box">
+                    <h3><i class="fa-solid fa-compass"></i> Travel Tips</h3>
+                    <ul class="guide-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Best visited during dry season months (November to May).</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Chavacano, Tagalog, and English are widely spoken across Region IX.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Carry cash in Philippine Pesos (PHP) for local market and island purchases.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Book Santa Cruz Island boat slots early via the City Tourism Office.</li>
+                    </ul>
+                </div>
+                <div class="guide-box">
+                    <h3><i class="fa-solid fa-suitcase"></i> Packing Checklist</h3>
+                    <ul class="guide-list">
+                        <li><i class="fa-solid fa-square-check"></i> Lightweight tropical clothes & extra swimwear</li>
+                        <li><i class="fa-solid fa-square-check"></i> Reef-safe sunscreen, wide-brim hat & sunglasses</li>
+                        <li><i class="fa-solid fa-square-check"></i> Waterproof dry bag for boat rides and island hopping</li>
+                        <li><i class="fa-solid fa-square-check"></i> Comfortable walking shoes for heritage trail walks</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- form -->
+        <section class="form-card">
+            <h2 class="section-title" style="border-color: var(--brand-primary);">Book Your Trip Inquiry</h2>
+            <p class="section-subtitle">Fill out your travel details below and our tourism representatives will help customize your itinerary.</p>
+            
+            <form onsubmit="alert('Thank you! Your trip inquiry has been received. Our team will contact you shortly.'); return false;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullname"><i class="fa-solid fa-user"></i> Full Name</label>
+                        <input type="text" id="fullname" placeholder="e.g. Maria Santos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                        <input type="email" id="email" placeholder="name@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="visitdate"><i class="fa-solid fa-calendar"></i> Planned Visit Date</label>
+                        <input type="date" id="visitdate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers"><i class="fa-solid fa-users"></i> Number of Travelers</label>
+                        <input type="number" id="travelers" min="1" max="100" placeholder="e.g. 2" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferred-package"><i class="fa-solid fa-map-location-dot"></i> Preferred Tour Package</label>
+                        <select id="preferred-package">
+                            <option>3-Day Zamboanga & Santa Cruz Island Package</option>
+                            <option>4-Day Dapitan & Dipolog Cultural Heritage Tour</option>
+                            <option>5-Day Full Peninsula Adventure & Food Tour</option>
+                            <option>Custom Travel Itinerary</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone"><i class="fa-solid fa-phone"></i> Contact Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+63 900 000 0000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes"><i class="fa-solid fa-comment-dots"></i> Special Questions or Notes</label>
+                    <textarea id="notes" rows="4" placeholder="Let us know about dietary restrictions, hotel preferences, or special tour requests..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fa-paper-plane fa-solid"></i> Submit Travel Inquiry
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo"><i class="fa-solid fa-compass"></i> ZAMBOANGA TOURISM</div>
+                <p>Escape the ordinary with our travel experiences across Region IX Zamboanga Peninsula.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="history.html">History & Culture</a></li>
+                    <li><a href="plan-trip.html">Plan Your Trip</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Landline:  012345678</p>
+                <p>Email: info@zamboangapeninsulatourism.ph</p>
+                <h4 style="margin-top: 1.2rem;">Newsletter Registration:</h4>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter email" required>
+                    <button type="submit">Register now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2026 Zamboanga Peninsula Tourism. All rights reserved</p>
+        </div>
+    </footer>
+
+</body>
+</html>

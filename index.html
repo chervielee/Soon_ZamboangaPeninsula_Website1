@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamboanga Peninsula Tourism - Home</title>
+
+    <!-- icon -->
+    <link rel="icon" type="image/png" href="Icons\favicon.ico">
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* theme */
+        :root {
+            --brand-primary: #701255;
+            --brand-dark: #52093c;
+            --brand-accent: #9d1b78;
+            --brand-light: #fdf5fa;
+            --text-heading: #1e111a;
+            --text-body: #635760;
+            --bg-page: #f8f6f8;
+            --card-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-body); background-color: var(--bg-page); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        a { text-decoration: none; color: inherit; }
+
+        /* header */
+        header {
+            position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: transparent; padding: 1.5rem 0;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        
+        /* logo */
+        .logo { font-size: 1.4rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
+        .logo img.custom-logo-icon { height: 32px; width: auto; object-fit: contain; }
+        .logo span { color: #f4aae1; }
+
+        .nav-links { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
+        .nav-links a { color: rgba(255, 255, 255, 0.9); font-weight: 500; font-size: 0.95rem; transition: var(--transition); position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: #ffffff; font-weight: 600; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: #ffffff; border-radius: 2px; }
+
+        /* vid w bg*/
+        .hero {
+            position: relative; 
+            min-height: 88vh;
+            display: flex; 
+            align-items: center; 
+            padding: 8rem 2rem 6rem 2rem; 
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(50, 10, 40, 0.75) 0%, rgba(20, 5, 18, 0.6) 100%);
+            z-index: 2;
+        }
+
+        .hero-container { 
+            position: relative;
+            z-index: 3;
+            max-width: 1280px; 
+            margin: 0 auto; 
+            width: 100%; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 3rem; 
+            align-items: center; 
+        }
+
+        .hero-content h1 { font-size: 3.8rem; font-weight: 900; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .hero-content p { font-size: 1.05rem; margin-bottom: 2.2rem; color: rgba(255, 255, 255, 0.88); max-width: 480px; font-weight: 300; line-height: 1.6; }
+        
+        .btn-outline {
+            display: inline-block; border: 1.5px solid rgba(255, 255, 255, 0.8); color: #ffffff;
+            padding: 0.8rem 2.2rem; border-radius: 30px; font-weight: 600; font-size: 0.85rem;
+            transition: var(--transition); background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(8px);
+        }
+        .btn-outline:hover { background: #ffffff; color: var(--brand-primary); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        .hero-floating-gallery { display: flex; gap: 1rem; justify-content: flex-end; }
+        .preview-card {
+            width: 170px; height: 260px; border-radius: 18px; overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 2px solid rgba(255, 255, 255, 0.35); transition: var(--transition);
+        }
+        .preview-card:nth-child(2) { transform: translateY(-20px); }
+        .preview-card:hover { transform: translateY(-10px) scale(1.03); }
+        .preview-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* hot dealz */
+        .hot-deals-wrapper {
+            background: #ffffff; margin-top: -65px; position: relative; z-index: 10;
+            border-radius: 30px; padding: 3.5rem 2.5rem 3rem 2.5rem; max-width: 1280px; margin-left: auto; margin-right: auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        }
+        .section-title-center { text-align: center; margin-bottom: 2.5rem; }
+        .section-title-center h2 { font-size: 1.8rem; font-weight: 800; color: var(--brand-primary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-title-center p { color: var(--text-body); font-size: 0.9rem; margin-top: 0.3rem; }
+
+        .deals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .deal-card { position: relative; border-radius: var(--card-radius); overflow: hidden; height: 360px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: var(--transition); }
+        .deal-card:hover { transform: translateY(-8px); box-shadow: 0 18px 35px rgba(112, 18, 85, 0.2); }
+        .deal-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .deal-card:hover img { transform: scale(1.08); }
+        .deal-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(50, 8, 38, 0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+            padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; color: #ffffff;
+        }
+        .deal-card-overlay h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; }
+        .deal-info { list-style: none; font-size: 0.8rem; color: rgba(255, 255, 255, 0.85); margin-bottom: 1.2rem; }
+        .deal-info li { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+        
+        .btn-pill {
+            background: rgba(255, 255, 255, 0.95); color: var(--brand-primary); text-align: center;
+            padding: 0.6rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.8rem; transition: var(--transition); display: block;
+        }
+        .btn-pill:hover { background: var(--brand-primary); color: #ffffff; }
+
+        /* BENTO GRID: TOP DESTINATION */
+        .container { max-width: 1280px; margin: 4.5rem auto; padding: 0 2rem; }
+        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 260px); gap: 1.5rem; margin-top: 2rem; }
+        .bento-item { position: relative; border-radius: var(--card-radius); overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: var(--transition); }
+        .bento-item:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(0,0,0,0.15); }
+        .bento-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .bento-item:hover img { transform: scale(1.06); }
+        .bento-content {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(40, 8, 30, 0.92) 0%, rgba(0,0,0,0.1) 65%, rgba(0,0,0,0) 100%);
+            padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; color: #ffffff;
+        }
+        .bento-content h3 { font-size: 1.3rem; font-weight: 800; text-transform: uppercase; }
+        .bento-content .subtitle { font-size: 0.85rem; color: #f4aae1; font-weight: 700; margin-bottom: 0.3rem; }
+        .bento-content p { font-size: 0.82rem; color: rgba(255, 255, 255, 0.8); margin-top: 0.4rem; line-height: 1.4; }
+
+        .bento-item.tall { grid-row: span 2; }
+        .bento-item.wide { grid-column: span 2; }
+
+        /* responsibilities banner */
+        .responsibilities-banner {
+            position: relative; border-radius: 28px;
+            background: linear-gradient(rgba(50, 8, 38, 0.8), rgba(50, 8, 38, 0.88)), 
+                        url('Images\main-page-photo.jpg') no-repeat center center/cover;
+            padding: 4rem 2rem; margin: 5rem auto; max-width: 1280px; color: #ffffff; text-align: center;
+        }
+        .responsibilities-banner h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 2.5rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 2rem 1.5rem; transition: var(--transition);
+        }
+        .feature-card:hover { background: rgba(255, 255, 255, 0.22); transform: translateY(-5px); }
+        .feature-icon {
+            width: 46px; height: 46px; background: var(--brand-primary); color: #ffffff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem auto; font-size: 1.1rem;
+        }
+        .feature-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .feature-card p { font-size: 0.85rem; color: rgba(255, 255, 255, 0.8); }
+
+        /* footer */
+        footer { background: #ffffff; color: var(--text-body); padding: 4rem 2rem 2rem 2rem; border-top: 1px solid #eaeaea; }
+        .footer-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #eee; }
+        .footer-brand .logo { color: var(--brand-primary); margin-bottom: 1rem; }
+        .footer-brand p { color: var(--text-body); font-size: 0.95rem; max-width: 320px; margin-bottom: 1.5rem; }
+        .social-links { display: flex; gap: 0.8rem; }
+        .social-icon { width: 36px; height: 36px; border-radius: 50%; background: #fbebf6; color: var(--brand-primary); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+        .social-icon:hover { background: var(--brand-primary); color: #ffffff; transform: translateY(-3px); }
+        .footer-links h4, .footer-contact h4 { font-size: 1.1rem; font-weight: 700; color: var(--brand-primary); margin-bottom: 1.2rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: var(--text-body); font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--brand-primary); padding-left: 4px; }
+        .footer-contact p { color: var(--text-body); font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .newsletter-form input { padding: 0.6rem 1rem; border: 1px solid #ddd; border-radius: 20px; flex: 1; font-size: 0.85rem; outline: none; }
+        .newsletter-form button { background: var(--brand-primary); color: #ffffff; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .footer-bottom { max-width: 1280px; margin: 2rem auto 0 auto; text-align: center; color: #999; font-size: 0.85rem; }
+
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .bento-item.tall, .bento-item.wide { grid-column: span 1; grid-row: span 1; height: 260px; }
+            .hero-container { grid-template-columns: 1fr; }
+            .hero-floating-gallery { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .footer-container { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- head nav -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="Icons\icon.ico" alt="" class="custom-logo-icon">
+                ZAMBOANGA <span>PENINSULA</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="history.html">History & Culture</a></li>
+                <li><a href="plan-trip.html">Plan Your Trip</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- hero wvid bg -->
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline poster="Images\main-page-photo.jpg">
+            <source src="Videos\7641 Islands Spotlight _ Zamboanga Peninsula.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>EXPLORE Zamboanga Peninsula With US! </h1>
+                <p>"Let us take the hassle out of travel planning, so you can focus on the adventure ahead."</p>
+                <a href="destinations.html" class="btn-outline">Discover Now</a>
+            </div>
+            <div class="hero-floating-gallery">
+                <div class="preview-card"><img src="Images/Zamboanga-City-Sta.Cruz-Island-1-.jpg" alt="Santa Cruz Island"></div>
+                <div class="preview-card"><img src="Images/fort-pilar.jpg" alt="Fort Pilar Shrine"></div>
+                <div class="preview-card"><img src="Images/merloquet-falls.jpg" alt="Merloquet Falls"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hot Deals -->
+    <div class="hot-deals-wrapper">
+        <div class="section-title-center">
+            <h2>HOT DEALS</h2>
+            <p>Fire up your savings with our hot deals</p>
+        </div>
+
+        <div class="deals-grid">
+            <div class="deal-card">
+                <img src="Images/santacruz1..jpg" alt="Santa Cruz Island">
+                <div class="deal-card-overlay">
+                    <h3>Santa Cruz Island</h3>
+                    <ul class="deal-info">
+                        <li><i class="fa-regular fa-clock"></i> Day Tour</li>
+                        <li><i class="fa-solid fa-star"></i> Pink Sand Beach</li>
+                        <li><i class="fa-solid fa-utensils"></i> Seafood Special</li>
+                    </ul>
+                    <a href="destinations.html" class="btn-pill">Discover Now</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <img src="Images/fortp1.jpg" alt="Fort Pilar Shrine">
+                <div class="deal-card-overlay">
+                    <h3>Fort Pilar Shrine</h3>
+                    <ul class="deal-info">
+                        <li><i class="fa-regular fa-clock"></i> Heritage Tour</li>
+                        <li><i class="fa-solid fa-landmark"></i> 17th-Century Fortress</li>
+                        <li><i class="fa-solid fa-camera"></i> Museum Access</li>
+                    </ul>
+                    <a href="destinations.html" class="btn-pill">Discover Now</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <img src="Images/rizal-shrine.jpg" alt="Rizal Shrine">
+                <div class="deal-card-overlay">
+                    <h3>Rizal Shrine Dapitan</h3>
+                    <ul class="deal-info">
+                        <li><i class="fa-regular fa-clock"></i> History Tour</li>
+                        <li><i class="fa-solid fa-tree"></i> Historical Park</li>
+                        <li><i class="fa-solid fa-user-graduate"></i> Cultural Heritage</li>
+                    </ul>
+                    <a href="destinations.html" class="btn-pill">Discover Now</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <img src="Images/merlo1.jpg" alt="Merloquet Falls">
+                <div class="deal-card-overlay">
+                    <h3>Merloquet Falls</h3>
+                    <ul class="deal-info">
+                        <li><i class="fa-regular fa-clock"></i> Nature Trek</li>
+                        <li><i class="fa-solid fa-water"></i> Terraced Cascades</li>
+                        <li><i class="fa-solid fa-person-hiking"></i> Eco Adventure</li>
+                    </ul>
+                    <a href="destinations.html" class="btn-pill">Discover Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- bento grid -->
+    <main class="container">
+        <div class="section-title-center">
+            <h2>TOP DESTINATION</h2>
+            <p>Experience the world's top destinations like never before</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-item tall">
+                <img src="Images/santac2.jpg" alt="Santa Cruz Island">
+                <div class="bento-content">
+                    <div class="subtitle">ZAMBOANGA CITY</div>
+                    <h3>Great Santa Cruz Island</h3>
+                    <p>World-famous for its unique pink coralline sand shorelines and protected mangrove lagoon tours.</p>
+                </div>
+            </div>
+
+            <div class="bento-item wide">
+                <img src="Images/fortp2.jpg" alt="Fort Pilar Shrine">
+                <div class="bento-content">
+                    <div class="subtitle">HISTORICAL LANDMARK</div>
+                    <h3>Fort Pilar Shrine</h3>
+                    <p>A royal 17th-century Spanish military defense fortress standing the test of time as an open-air sanctuary.</p>
+                </div>
+            </div>
+
+            <div class="bento-item">
+                <img src="Images/rizal2.jpg" alt="Rizal Shrine">
+                <div class="bento-content">
+                    <div class="subtitle">DAPITAN CITY</div>
+                    <h3>Rizal Shrine</h3>
+                </div>
+            </div>
+
+            <div class="bento-item">
+                <img src="Images/merlo2.jpg" alt="Merloquet Falls">
+                <div class="bento-content">
+                    <div class="subtitle">ZAMBOANGA CITY</div>
+                    <h3>Merloquet Falls</h3>
+                </div>
+            </div>
+
+            <div class="bento-item wide">
+                <img src="Images/kayak2.jpg" alt="Region IX Heritage">
+                <div class="bento-content">
+                    <div class="subtitle">REGION IX HERITAGE</div>
+                    <h3>Vinta Regatta</h3>
+                    <p>Witness colorful native vintas with hand-woven sails gliding across vibrant coastal waters.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- responsibilities -->
+    <section class="responsibilities-banner">
+        <h2>Our Responsibilities</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
+                <h4>Always Available</h4>
+                <p>24/7 travel assistance during your tour.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
+                <h4>Cancel Free of Charge</h4>
+                <p>Flexible options with FLEX TARIF policy.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
+                <h4>Train to Flight Ticket</h4>
+                <p>Seamless transfer across all destinations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
+                <h4>Flyloco Angebote</h4>
+                <p>Curated local flight and accommodation deals.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="Icons\icon.ico" alt="" class="custom-logo-icon"> 
+                    ZAMBOANGA TOURISM
+                </div>
+                <p>Escape the ordinary with our travel experiences across Region IX Zamboanga Peninsula.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="history.html">History & Culture</a></li>
+                    <li><a href="plan-trip.html">Plan Your Trip</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Landline:  012345678</p>
+                <p>Email: info@zamboangapeninsulatourism.ph</p>
+                <h4 style="margin-top: 1.2rem;">Newsletter Registration:</h4>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter email" required>
+                    <button type="submit">Register now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2026 Zamboanga Peninsula Tourism. All rights reserved</p>
+        </div>
+    </footer>
+
+</body>
+</html>

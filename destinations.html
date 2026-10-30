@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Destinations - Zamboanga Peninsula Tourism</title>
+    <link rel="icon" type="image/png" href="Assets/Icons/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-primary: #701255;
+            --brand-dark: #52093c;
+            --text-heading: #1e111a;
+            --text-body: #635760;
+            --bg-page: #f8f6f8;
+            --card-radius: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-body); background-color: var(--bg-page); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        a { text-decoration: none; color: inherit; }
+
+        header { position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: #f4aae1; }
+        .nav-links { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
+        .nav-links a { color: rgba(255,255,255,0.9); font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: #ffffff; font-weight: 600; }
+
+        .page-banner {
+            height: 45vh; min-height: 350px;
+            background: linear-gradient(135deg, rgba(50, 10, 40, 0.8) 0%, rgba(20, 5, 18, 0.65) 100%), 
+                        url('Assets/Images/main-page-photo.jpg') no-repeat center center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff; padding-top: 4rem;
+        }
+        .banner-content h1 { font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; }
+
+        .container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
+        .spot-card {
+            background: #ffffff; border-radius: var(--card-radius); overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-bottom: 3rem;
+            display: grid; grid-template-columns: 1fr 1fr; transition: var(--transition);
+        }
+        .spot-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(112, 18, 85, 0.15); }
+        .spot-image { position: relative; min-height: 300px; }
+        .spot-image img { width: 100%; height: 100%; object-fit: cover; }
+        .spot-content { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+        .spot-content h2 { font-size: 1.8rem; font-weight: 800; color: var(--brand-primary); margin-bottom: 1rem; }
+        .spot-content p { color: var(--text-body); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
+        .location-tag { color: var(--brand-accent); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+
+        footer { background: #ffffff; color: var(--text-body); padding: 4rem 2rem 2rem 2rem; border-top: 1px solid #eaeaea; }
+        .footer-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #eee; }
+        .footer-brand .logo { color: var(--brand-primary); margin-bottom: 1rem; }
+        .social-links { display: flex; gap: 0.8rem; }
+        .social-icon { width: 36px; height: 36px; border-radius: 50%; background: #fbebf6; color: var(--brand-primary); display: flex; align-items: center; justify-content: center; }
+        .footer-links h4, .footer-contact h4 { font-size: 1.1rem; font-weight: 700; color: var(--brand-primary); margin-bottom: 1.2rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: var(--text-body); font-size: 0.9rem; }
+        .newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .newsletter-form input { padding: 0.6rem 1rem; border: 1px solid #ddd; border-radius: 20px; flex: 1; font-size: 0.85rem; }
+        .newsletter-form button { background: var(--brand-primary); color: #ffffff; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+        .footer-bottom { max-width: 1280px; margin: 2rem auto 0 auto; text-align: center; color: #999; font-size: 0.85rem; }
+
+        @media (max-width: 768px) { .spot-card { grid-template-columns: 1fr; } .nav-links { display: none; } .footer-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fa-solid fa-compass"></i> ZAMBOANGA <span>PENINSULA</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html" class="active">Destinations</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="history.html">History & Culture</a></li>
+                <li><a href="plan-trip.html">Plan Your Trip</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Popular Destinations</h1>
+            <p>Explore the natural wonders and landmark attractions across Region IX.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <article class="spot-card">
+            <div class="spot-image"><img src="Images\Zamboanga-City-Sta.Cruz-Island-1-.jpg" alt="Santa Cruz Island"></div>
+            <div class="spot-content">
+                <h2>Great Santa Cruz Island</h2>
+                <p>Famous worldwide for its rare pink sand beach composed of pulverized red organ pipe corals. Visitors can enjoy guided boat tours through pristine mangrove lagoons and experience protected marine eco-tourism.</p>
+                <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Zamboanga City, Zamboanga del Sur</div>
+            </div>
+        </article>
+
+        <article class="spot-card">
+            <div class="spot-image"><img src="Images\fort-pilar.jpg" alt="Fort Pilar Shrine"></div>
+            <div class="spot-content">
+                <h2>Fort Pilar Shrine</h2>
+                <p>A royal 17th-century Spanish military defense fortress built to safeguard the region. Today, it stands as an open-air Marian shrine and houses a regional branch of the National Museum of the Philippines.</p>
+                <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Zamboanga City</div>
+            </div>
+        </article>
+
+        <article class="spot-card">
+            <div class="spot-image"><img src="Images\rizal-shrine.jpg" alt="Rizal Shrine"></div>
+            <div class="spot-content">
+                <h2>Rizal Shrine</h2>
+                <p>The historical park marking the exact farm estate where Dr. Jose Rizal lived during his four years of exile from 1892 to 1896. The property features replicas of his bamboo houses, clinic, and outdoor amphitheater.</p>
+                <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Dapitan City, Zamboanga del Norte</div>
+            </div>
+        </article>
+
+        <article class="spot-card">
+            <div class="spot-image"><img src="Images\merlo2.jpg" alt="Merloquet Falls"></div>
+            <div class="spot-content">
+                <h2>Merloquet Falls</h2>
+                <p>A breathtaking multi-tiered waterfall hidden inside lush tropical woodland at Barangay Sibulao. The unique terraced rock formations allow cool freshwater to cascade gently like a curtain.</p>
+                <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Zamboanga City</div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo"><i class="fa-solid fa-compass"></i> ZAMBOANGA TOURISM</div>
+                <p>Escape the ordinary with our travel experiences across Region IX Zamboanga Peninsula.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="history.html">History & Culture</a></li>
+                    <li><a href="plan-trip.html">Plan Your Trip</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Landline: 00 800 21 21 21 00</p>
+                <p>Email: info@zamboangapeninsulatourism.ph</p>
+                <h4 style="margin-top: 1.2rem;">Newsletter Registration:</h4>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter email" required>
+                    <button type="submit">Register now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2026 Zamboanga Peninsula Tourism. All rights reserved</p>
+        </div>
+    </footer>
+
+</body>
+</html>
